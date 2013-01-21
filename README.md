@@ -15,14 +15,12 @@ Current version documentation is available on the [Typecast.js website](http://t
 Version History
 -----------
 
-*Edge Development v0.0.5*
-
-Jan 21th, 2013
+*Edge Development v0.0.5* :: Jan 21th, 2013
 
 
 _If you already have Underscore.js_
 
-Version Key: 3c4f37d1cbfcc30c25279a970ac79ff09584b759
+typecast-0.0.5.js :: Version Key 3c4f37d1cbfcc30c25279a970ac79ff09584b759
 
 [Unit Tests](http://typecastjs.org/test/3c4f37d1cbfcc30c25279a970ac79ff09584b759)
 
@@ -32,7 +30,7 @@ Version Key: 3c4f37d1cbfcc30c25279a970ac79ff09584b759
 
 _Includes Underscore.js_
 
-Version Key: bc737c31427fdad65b6e2a24a6a8f0eedaf38d7e
+typecast-0.0.5-with-underscore.js :: Version Key bc737c31427fdad65b6e2a24a6a8f0eedaf38d7e
 
 [Unit Tests](http://typecastjs.org/test/bc737c31427fdad65b6e2a24a6a8f0eedaf38d7e)
 
