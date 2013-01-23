@@ -15,7 +15,7 @@ Current version documentation is available on the [Typecast.js website](http://t
 Version History
 -----------
 
-*Edge Development v0.0.5* :: Jan 21th, 2013
+**Edge Development v0.0.5** :: Jan 21th, 2013
 
 
 _If you already have Underscore.js_
