@@ -21,7 +21,7 @@
 		ok(typedObject.get() === 123, "typedObject.get() === value");
 		typedObject.set(456);
 		ok(typedObject.get() === 456, "typedObject.set() changes value");
-		ok(Type('NaN', typedObject).type() === 'nan', "Type('newType', typedObject) changes type");
+		ok(Type('number', typedObject).type() === 'number', "Type('newType', typedObject) changes type");
 		ok(typedObject.ifis('number', function(){ return true; }), "typedObject.ifis('type', function(){ return true; })");
 		ok(typedObject.ifis(true, function(){ return true; }), "typedObject.ifis(true, function(){ return true; })");
 	});
@@ -29,7 +29,7 @@
 	test('Comparison', function() {
 		ok(Type.a('number') === 0, "Type.a('number') === 0");
 		ok(Type.a('string') === '', "Type.a('string') === ''");
-		ok(Type.is(Type('number'), 123), "Type.is(Type('number'), 123) is true");
+		ok(Type.is(Type(123), 123), "Type.is(Type(123), 123) is true");
 		ok(Type.is('number', Type('number', 123)), "Type.is('number', Type('number', 123)) is true");
 		ok(Type.can('number', Type('number', 123)), "Type.can('number', Type('number', 123)) is true");
 		ok(Type.make('number', 123) === 123, "Type.make('number', 123) === 123");
