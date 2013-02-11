@@ -12,28 +12,29 @@ Documentation
 
 Current version documentation is available on the [Typecast.js website](http://typecastjs.org).
 
+
+Files
+-----------
+
+**base.js**
+
+This is the base Typecast.js library. Everything else is an extension.
+
+**unitTest.html**
+
+This is the file of the current unit tests. It uses ejs template language.
+
+
 Version History
 -----------
 
-**Edge Development v0.0.5** :: Jan 21th, 2013
+**Beta v0.1** :: Jan 21th, 2013
 
+_requires underscore_
 
-_If you already have Underscore.js_
+typecast-0.1.js :: Version Key 87c81d6115534ba3f5de0cb8ae51281ffa4c25f5
 
-typecast-0.0.5.js :: Version Key 3c4f37d1cbfcc30c25279a970ac79ff09584b759
+[Unit Tests](http://typecastjs.org/test/87c81d6115534ba3f5de0cb8ae51281ffa4c25f5)
 
-[Unit Tests](http://typecastjs.org/test/3c4f37d1cbfcc30c25279a970ac79ff09584b759)
-
-[Documentation](http://typecastjs.org/docs/build/3c4f37d1cbfcc30c25279a970ac79ff09584b759)
-
-
-
-_Includes Underscore.js_
-
-typecast-0.0.5-with-underscore.js :: Version Key bc737c31427fdad65b6e2a24a6a8f0eedaf38d7e
-
-[Unit Tests](http://typecastjs.org/test/bc737c31427fdad65b6e2a24a6a8f0eedaf38d7e)
-
-[Documentation](http://typecastjs.org/docs/build/bc737c31427fdad65b6e2a24a6a8f0eedaf38d7e)
-
+[Documentation](http://typecastjs.org/docs/build/87c81d6115534ba3f5de0cb8ae51281ffa4c25f5)
 
