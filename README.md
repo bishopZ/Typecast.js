@@ -28,6 +28,21 @@ This is the file of the current unit tests. It uses ejs template language.
 Version History
 -----------
 
+**Beta v0.2** :: Jan 21th, 2013
+
++ Added types Vector and Geoposition
++ Added "that" property to ifis()
++ Added .average() function to Arrays
++ Added .sample() function to Functions
+
+typecast-0.1.js :: Version Key 
+
+[Unit Tests](http://typecastjs.org/test/)
+
+[Documentation](http://typecastjs.org/docs/build/)
+
+
+
 **Beta v0.1** :: Jan 21th, 2013
 
 _requires underscore_

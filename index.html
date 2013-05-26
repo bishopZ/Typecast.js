@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="ie" lang="en"> <!--<![endif]-->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Typecast.js - Type Casting for Javascript</title>
+<meta name="description" content="">
+<meta name="author" content="Bishop Zareh">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link type="text/css" rel="stylesheet" href="oldsrc/styles.css" />
+<style>
+body {
+	background:#f7f7f7;
+}
+p {
+	padding:0;
+}
+.docs {
+	padding-left: 20px;
+	padding-bottom: 5px;
+}
+.docs p {
+	margin: 0;
+	padding: 0;
+}
+.docs p:last {
+padding-bottom: 5px;
+}
+h3 {
+	margin-top:25px;
+}
+h4 {
+	margin-top:20px;
+}
+nav {
+	border-left: 1px solid #c9c9c9;
+	border-right: 1px solid #bababa;
+	border-bottom: 1px solid #bababa;
+	background-color:#e7e7e7;
+	padding:10px;
+}
+.syntaxhighlighter div.toolbar {
+	display:none !important;
+}
+.typeCols {
+	padding-left:10px;
+}
+#base-types .columns {
+	margin-left:0;
+}
+.extra {
+	padding-top:10px;
+	margin-bottom:2px;
+}
+
+/*.typeCols.alpha { padding-left:10px; }*/
+</style>
+</head>
+<body>
+<div class="container" id="top">
+<div class="sidebar four columns alpha hidden">
+    <nav class="rel">
+        <h2 id="logo" class="lanePosh">Typecast.js <small>v0.2</small></h2>
+        <ul class="list">
+            <li><a href="#base-types">The Types</a></li>
+            <li><a href="#documentation">Getting Started</a>
+                <ul class="notmobile">
+                    <li class="caps">&bull; <a href="#new-types">Expanding Typecast</a></li>
+                </ul>
+            </li>
+            <li><a href="#fixingJS">Fixing Javascript</a>
+                <ul class="notmobile">
+                    <li class="caps">&bull; <a href="#strong">Strong &amp; Loose</a></li>
+                    <li class="caps">&bull; <a href="#truth">Truth &amp; Truthy</a></li>
+                    <li class="caps">&bull; <a href="#numbers">Numbers</a></li>
+                    <li class="caps">&bull; <a href="#arrays">Arrays</a></li>
+                </ul>
+            </li>
+            <li><a href="#links">Collaborate &amp; Licence</a></li>
+            <li><a href="https://github.com/bishopZ/Typecast.js" target="_blank">Version History</a></li>
+        </ul>
+        <h3 class="lanePosh">Download</h3>
+        <!--
+                <h4>Type Lite - Over 300 of the most commonly used Javascript helper functions.</h4>
+                <p><a href="#">Source</a> | <a href="">Unit Tests</a> | <a href="#">Documentation</a></p>
+                <h4>Type Full - Over 500 helper functions covering a wide range of standard data types.</h4>
+                <p><a href="#">Source</a> | <a href="#">Unit Tests</a> | <a href="#">Documentation</a></p>
+                <h4>Type Lazy - A 9k stub that loads helpers on-demand for only the types of data you use.</h4>
+                <p><a href="/docs/build/<%= build.sha %>/source">Lazy Load Leader (9k)</a> | <a href="#">Type Library</a> | <a href="/test/<%= build.sha %>">Unit Tests</a> | <a href="/docs/build/<%= build.sha %>">Documentation</a></p>
+                -->
+        <div class="doc-section row notmobile extra"> <img alt="Typecasted" src="oldsrc/actors/01.jpg" class="scale"/> <img alt="Typecasted"  src="oldsrc/actors/02.jpg" class="scale"/> <img alt="Typecasted"  src="oldsrc/actors/03.jpg" class="scale"/> <img alt="Typecasted"  src="oldsrc/actors/04.jpg" class="scale"/> <img alt="Typecasted"  src="oldsrc/actors/05.jpg" class="scale"/> 
+            <!--<img alt="Typecasted"  src="oldsrc/actors/06.jpg" class="scale"/>
+                <img alt="Typecasted"  src="oldsrc/actors/07.jpg" class="scale"/>
+                <img alt="Typecasted"  src="oldsrc/actors/08.jpg" class="scale"/>
+                <img alt="Typecasted"  src="oldsrc/actors/09.jpg" class="scale"/>--> 
+            <img alt="Typecasted"  src="oldsrc/actors/10.jpg" class="scale"/> <img alt="Typecasted"  src="oldsrc/actors/11.jpg" class="scale"/> </div>
+    </nav>
+</div>
+<div class="content twelse columns alpha omega" id="top">
+    <header>
+        <h1 class="lane large row">Typecast.js</h1>
+        <hr class="large row" />
+        <div class="row quote">
+            <p class="bold">Typecast.js - Typing for Javascript</p>
+            <p><a href="typecast.raw.js">Typecast v0.2 Commented Source (17k)</a></p>
+            <p><a href="typecast.min.js">Typecast v0.2 Compressed Source (10k)</a></p>
+            <p><a href="typecast.underscore.min.js">Typecast v0.2 + Underscore.js v1.4 Compressed (24k)</a></p>
+            <p><a href="typecast.underscore.json.min.js">Typecast v0.2 + Underscore.js v1.4 + JSON for IE7  support (27k)</a></p>
+        </div>
+    </header>
+    <hr class="large">
+    <div class="doc-section" id="">
+        <h2 class="lane">Type can run most anywhere</h2>
+        <h3 id="casting">AMD/require module, Node.js module, or just include it in the Browser</h3>
+        <div class="row docs">
+        	<p>Type requires underscore.js and JSON.</p>
+            <pre>var type = require("typecast");</pre>
+        </div>
+        <h3>type as a function works out the "typeof" problems in Javascript</h3>
+        <div class="row docs">
+            <p>here is the full list of possible return values from type()</p>
+            <pre>type()			// "undefined"
+type(null)		// "null"
+type(NaN)		// "nan"
+type(true)		// "boolean"
+type(123)		// "number"
+type("123")		// "string"
+type([])		// "array"
+type(arguments)	// "arguments"
+type({})		// "object"</pre>
+            
+        </div>
+        <h3>The name of each type is also a function</h3>
+        <div class="row docs">
+            <p>each type's function asks if the value "is" of that type</p>
+            <pre>type.str("123")		// true
+type.obj(null)		// false
+type.fn(_)			// true</pre>
+        </div>
+    </div>
+    <hr class="large">
+    <div id="base-types" class="row">
+        <h2 class="lane">The New Natives</h2>
+        <p>Typecast extends javascript typing to provide a wide base of type detections.</p>
+        <div class="row">
+            <div class="three columns typeCols alpha">
+                <h4 class="caps wrap0">base</h4>
+                <ul class="list">
+                    <li >null (nul)</li>
+                    <li >undefined (undef)</li>
+                    <li >NaN (nan)</li>
+                    <li >defined (def)</li>
+                </ul>
+            </div>
+            <div class="three columns typeCols ">
+                <h4 class="caps wrap0">dual</h4>
+                <ul class="list">
+                    <li >boolean (bool)</li>
+                    <li >true (tru)</li>
+                    <li >truthy (truy)</li>
+                    <li >false (fal)</li>
+                    <li >falsey (faly)</li>
+                </ul>
+            </div>
+            <div class="three columns typeCols ">
+                <h4 class="caps wrap0">numeric</h4>
+                <ul class="list">
+                    <li >number (num)</li>
+                    <li >integer (int)</li>
+                    <li >floating (flt)</li>
+                    <li >vector (vct)</li>
+                </ul>
+            </div>
+            <div class="three columns typeCols ">
+                <h4 class="caps wrap0">characters</h4>
+                <ul class="list">
+                    <li >string (str)</li>
+                    <li >plain string (plain)</li>
+                    <li >email (email)</li>
+                    <li >unique id (unique)</li>
+                </ul>
+            </div>
+           
+            <div class="three columns typeCols ">
+                <h4 class="caps wrap0">collections</h4>
+                <ul class="list">
+                    <li >collection (col)</li>
+                    <li >object (obj)</li>
+                    <li >array (arr)</li>
+                    <li >arguments (args)</li>
+                    <li >geoposition (geo)</li>
+                    <li >json (json)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+        
+            <div class="three columns typeCols alpha">
+                <h4 class="caps wrap0">functional</h4>
+                <ul class="list">
+                    <li >function (fn)</li>
+                    <li >queue (que)</li>
+                </ul>
+            </div>
+            <div class="three columns typeCols ">
+                <h4 class="caps wrap0">queries</h4>
+                <ul class="list">
+                    <li >regex (reg)</li>
+                </ul>
+            </div>
+            <div class="three columns typeCols ">
+                <h4 class="caps wrap0">time</h4>
+                <ul class="list">
+                    <li >date (date)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <p class="floatR pad0"><a href="#top">^ back to top</a></p>
+    </div>
+    <hr class="large">
+    <div class="doc-section" id="">
+        <h2 class="lane">Type is a Foundation</h2>
+        <h3 id="">Type allows you an easy way to alway know certian things are true. This makes your code more robust in a wider set of browsers and environments.</h3>
+        <div class="row docs">
+        	<h4>each type library has a(), to(), can()</h4>
+        	<pre>type.num.a() 			// 0, an example value
+type.num.to("123x")		// 123 
+type.num.to("xyz") 		// 0
+type.num.can("123x")	// true
+type.num.can("xyz")		// false</pre>
+		</div>
+    	<h3>Over 200 Helper functions for only 10k</h3>
+        <div class="row docs">
+			<p>Most of them are copies of other functions, but are organized by the type of value they operate on. This way you don't have to remember or know that _.indexOf is safer than the native Array.indexOf or _.isNaN is safer than the native isNaN(). Type always uses the most cross-compitable version of each helper.</p>
+       		<pre>type.num.min === Math.min
+type.arr.indexOf === _.indexOf // not Array.indexOf
+type.nan == _.isNaN // not the native isNaN</pre>
+			
+            <div class="five columns typeCols ">
+                <h4 class="caps wrap0">Booleans</h4>
+                <ul class="list">
+                    <li >not = returns the opposite </li>
+                </ul>
+                <h4 class="caps wrap0">Integer</h4>
+                <ul class="list">
+                    <li >dec = return --v</li>
+					<li >inc = return ++v</li>
+                </ul>
+                <h4 class="caps wrap0">Floating Point Number</h4>
+                <ul class="list">
+                    <li >eq = fixed point comparison</li>
+					<li >decimal = return just the decimal portion</li>
+                </ul>
+                <h4 class="caps wrap0">Arguments</h4>
+                <ul class="list">
+                    <li >toArray = Array.prototype.slice.call</li>
+					<li >sub = Array.slice</li>
+                    <li >pre = Array.unshift</li>
+                </ul>
+                <h4 class="caps wrap0">Date</h4>
+                <ul class="list">
+                    <li >shortMonth = return a month abbreviation</li>
+					<li >shortDay = return a day abbreviation</li>
+                    <li >day = return a full day name</li>
+                </ul>
+                <h4 class="caps wrap0">Json</h4>
+                <ul class="list">
+                    <li >stringify = JSON.stringify</li>
+					<li >parse = JSON.parse</li>
+                </ul>
+            </div>
+            
+            <div class="five columns typeCols ">
+                <h4 class="caps wrap0">Numbers</h4>
+                <ul class="list">
+                    <li> random = _.random</li>
+                    <li> range = _.range</li>
+                    
+                    <li> round = Math.round</li>
+                    <li> abs = Math.abs</li>
+                    <li> ceil = Math.ceil</li>
+                    <li> floor = Math.floor</li>
+                    <li> min = Math.min</li>
+                    <li> max = Math.max</li>
+                    
+                    <li> exp = Math.exp</li>
+            		<li> sqrt = Math.sqrt</li>
+            		<li> pow = Math.pow</li>
+            		<li> log = Math.log</li>
+            
+            		<li> sin = Math.sin</li>
+                    <li> cos = Math.cos</li>
+                    <li> tan = Math.tan</li>
+                    <li> asin = Math.asin</li>
+                    <li> acos = Math.acos</li>
+                    <li> atan = Math.atan</li>
+                    
+                    <li> plus = return a + b</li>
+					<li> minus = return a - b</li>
+					<li> mod = return a % b</li>
+					<li> times = return a * b</li>
+					<li> div = return a / b</li>
+			
+            		<li> sign = return the sign of a number</li>
+                    <li> between = is value between high and low</li>
+			
+            		<li> eq = return a === b</li>
+                    <li> neq = return a !== b</li>
+                    <li> lt = return a < b</li>
+                    <li> lte = return a <= b</li>
+                    <li> gt = return a > b</li>
+                    <li> gte = return a >= b</li>
+                    
+                    <li> fixed = Number.toFixed</li>
+                    <li> hex = Number.toString(16)</li>
+                    <li> binary = Number.toString(2)</li>
+          	    </ul>
+            </div>
+            <div class="five columns typeCols ">
+                 <h4 class="caps wrap0">String</h4>
+                 <ul class="list">
+                    <li >fromCharCode = String.fromCharCode</li>
+					<li >charAt = String.charAt</li>
+                    <li >charCodeAt = String.charCodeAt</li>
+                    <li >length = String.length</li>
+                    <li >upper = String.toUpperCase</li>
+                    <li >lower = String.toLowerCase</li>
+                    
+                    <li >escape = _.escape</li>
+                    <li >unescape = _.unescape</li>
+                    <li >template = _.template</li>
+                    <li >contains = _.contains</li>
+                    <li >array = _.toArray</li>
+                    
+                    <li >ltrim = left trim</li>
+                    <li >rtrim = right trim</li>
+                    <li >trim = left and right trim</li>
+                    
+                    <li >truncate = truncate to length</li>
+                </ul>
+                <h4 class="caps wrap0">Functions</h4>
+                 <ul class="list">
+                    <li >noop = empty function</li>
+                    
+                    <li >compose = _.compose</li>
+                    <li >identity = _.identity</li>
+                    <li >bind = _.bind</li>
+                    <li >memorize = _.memorize</li>
+                    <li >delay = _.delay</li>
+                    <li >defer = _.defer</li>
+                    <li >throttle = _.throttle</li>
+                    <li >debounce = _.debounce</li>
+                    <li >once = _.once</li>
+                    <li >after = _.after</li>
+                    <li >wrap = _.wrap</li>
+                    <li >times = _.times</li>
+                    <li >always = always return a value</li>
+                    <li >sample = run at a sample rate</li>
+                </ul>
+            </div>
+            
+        </div>
+     	<div class="row docs">
+        	<div class="five columns typeCols ">
+                 <h4 class="caps wrap0">Collections (Arrays and Objects)</h4>
+                 <ul class="list">
+                    <li >each = _.each</li>
+                    <li >map = _.map</li>
+                    <li >reduce = _.reduce</li>
+                    <li >reduceRight = _.reduceRight</li>
+                    <li >find = _.find</li>
+                    <li >filter = _.filter</li>
+                    <li >where = _.where</li>
+                    <li >reject = _.reject</li>
+                    <li >contains = _.contains</li>
+                    <li >invoke = _.invoke</li>
+                    <li >pluck = _.pluck</li>
+                    <li >sortBy = _.sortBy</li>
+                    <li >groupBy = _.groupBy</li>
+                    <li >countBy = _.countBy</li>
+                    <li >shuffle = _.shuffle</li>
+                    <li >toArray = _.toArray</li>
+                    <li >length = _.length</li>
+                    <li >all = _.all</li>
+                    <li >any = _.any</li>
+                    <li >max = _.max</li>
+                    <li >min = _.min</li>
+                    
+                    <li >mapValue = map for object values</li>
+                </ul>
+            </div>
+            <div class="five columns typeCols ">
+                 <h4 class="caps wrap0">Arrays</h4>
+                 <ul class="list">
+                    <li >push = Array.push</li>
+                    <li >pop = Array.pop</li>
+                    <li >shift = Array.shift</li>
+                    <li >unshift = Array.unshift</li>
+                    <li >slice = Array.slice</li>
+                    <li >splice = Array.splice</li>
+                    <li >sort = Array.sort</li>
+                    
+                    <li >range = _.range</li>
+                    <li >toObject = _.toObject</li>
+                    <li >zip = _.zip</li>
+                    <li >indexOf = _.indexOf</li>
+                    <li >lastIndexOf = _.lastIndexOf</li>
+                    <li >first = _.first</li>
+                    <li >last = _.last</li>
+                    <li >initial = _.initial</li>
+                    <li >rest = _.rest</li>
+                    <li >compact = _.compact</li>
+                    <li >flatten = _.flatten</li>
+                    <li >without = _.without</li>
+                    <li >union = _.union</li>
+                    <li >intersection = _.intersection</li>
+                    <li >difference = _.difference</li>
+                    <li >unique = _.unique</li>
+                    <li >sortedIndex = _.sortedIndex</li>
+                    
+                    <li >average = returns average of all values</li>
+                    
+                </ul>
+            </div>
+            <div class="five columns typeCols ">
+                 <h4 class="caps wrap0">Objects</h4>
+                 <ul class="list">
+                    <li >extend = _.extend</li>
+                    <li >clone = _.clone</li>
+                    <li >pairs = _.pairs</li>
+                    <li >invert = _.invert</li>
+                    <li >functions = _.functions</li>
+                    <li >pick = _.pick</li>
+                    <li >omit = _.omit</li>
+                    <li >defaults = _.defaults</li>
+                    <li >tap = _.tap</li>
+                    <li >keys = _.keys</li>
+                    <li >values = _.values</li>
+                    <li >isEqual = _.isEqual</li>
+                    <li >isEmpty = _.isEmpty</li>
+                    <li >isElement = _.isElement</li>
+                    <li >has = _.has</li>
+                    <li >result = _.result</li>
+                    
+                    <li >isSubobject = is one object inside another</li>
+                    
+                </ul>
+            </div>
+        
+   
+        </div>
+     	
+    </div>
+    <hr class="large">
+    <div class="doc-section" id="">
+        <h2 class="lane">Type is Extensible</h2>
+        <h3 id="casting">Create your own types, share them with your friends!</h3>
+        <div class="row docs">
+        	<pre>type.extend({
+	name: "positive",
+	a : 1,
+	is: function(){},
+	to: function(){},
+	can: function(){},
+	inherits: ['num'], // optional
+	methods: { // optional
+		special: function(){}
+	} 
+});</pre>
+        </div>
+        <h3>or add methods to an existing type</h3>
+        <div class="row docs">
+            <pre>type.extend({
+	name: "json",
+	methods: {
+		special: function(){} // clobers any existing method named "special"
+	} 
+});</pre>
+			<p class="floatR pad0"><a href="#top">^ back to top</a></p>
+        </div>
+        
+    </div>
+    <hr class="large">
+    <div class="doc-section row" id="fixingJS">
+        <h2 class="lane">What's Wrong with Javascript?</h2>
+        <p>The main value statement of Typecast is that it <span class="bold em">&quot;speeds development by reducing the length and variety of code required to complete common programming tasks, reducing both bugs and troubleshooting time.&quot;</span> Typecast smooths out many of the eccentricities of Javascript and how Javascript is implemented across browsers. Below are a few examples of how Typecast does this.</p>
+        <h3 id="strong">Strong and Loose</h3>
+        <p>Typecast doesn't remove access to the native prototypes, and does this without  trapping you into a custom compiler that could quickly fall out of date. Converting CoffeeScript back to Javascript requires a complete re-write. Typecast on the other hand, enables you to use  strongly typed variables while keeping the code base in native Javascript syntax, regardless of the environment.</p>
+        <h3 id="truth">What is Truth?</h3>
+        <p>Frequently, it is convenient to use Javascript shorthand to detect for the existence of a variable:</p>
+        <pre>if (someVar) { 
+	// do stuff with someVar
+}
+
+var newVar = (oldVar) ? oldVar : defaultValue;</pre>
+        <p>If someVar is undefined or null then these statements work, but if the value of the variable has a value of 0 then these statements evaluate false even though the value is defined. If this is the behavior you want, then great, but each of these shorthand statements are potential bugs that may not show up until a test case where the variable exists, but doesn't have a truthy value. Typecast solves this by differentiating True from Truthy and False from Falsey. </p>
+        <pre>type.fal(0);	// false
+type.fal(0);	// true
+type.fal('');	// false
+type.faly('');	// true
+type.fal([]);	// false
+type.faly([]);	// true
+
+0 == &quot;0&quot;	// true
+true == &quot;true&quot;	// false ?!?
+
+type.num.to(0) == type.num.to(&quot;0&quot;)	// true
+type.bool.to(true) == type.bool.to(&quot;true&quot;)	// true
+</pre>
+        <h3 id="numbers">What is a Number?</h3>
+        <p>One problem with numbers in Javascript is that they are not particularly easy to parse becuae there are so many types of them. Typecast aims to parse all of the conventional number patterns in Javascript. These include:</p>
+        <ul class="wrap0">
+            <li>conventional decimal numbers:  0 1 5 137 1.3</li>
+            <li>decimal numbers in exponential form:  6.67e-11 -1.127e20</li>
+            <li>octal numbers, for example:  077 -01234 0312</li>
+            <li>hexadecimal numbers, for example: 0xFF -0xCCFF 0xabcdef </li>
+            <li>predefined mathematical constants (properties of the Math object)</li>
+        </ul>
+        <p>Another problem that numbers have is that floating point comparison is way off. See this <a href="http://stackoverflow.com/questions/588004/is-javascripts-floating-point-math-broken">StackOverflow article</a>.</p>
+        <pre>0.1 + 0.2 == 0.3 		// returns false
+0.1 + 0.2 				// returns 0.30000000000000004 !?!
+
+&quot;&quot; + 1 + 2;				// &quot;12&quot;
+&quot;&quot; + ( 1 + 2 );			// &quot;3&quot;
+&quot;&quot; + 0.0000001;			// &quot;1e-7&quot;
+parseInt( 0.0000001 );	// 1 !?!</pre>
+        <p>Or how about what isn't a Number<a href="https://github.com/bishopZ/Typecast.js"></a>. Not a Number, or NaN, is the only Number which is not equal to itself. Making it an intersting puzzle, an oddity, but not very practical as a return value for Number casting.</p>
+        <pre>NaN == NaN				// false ?!?
+typeof NaN === 'number'	// true, 'Not A Number' is a Number ?!
+type.nan(NaN) 		// true
+type.num(NaN)		// false
+
+Number('abc')			// NaN
+parseInt('abc')			// NaN
+parseFloat('abc')		// NaN
+type.num.to('abc')		// 0
+
+type.nan(NaN);		// true
+type.nan(1);		// false
+type.num(NaN);		// false
+type.num(1);		// true</pre>
+        <h3 id="arrays">What is an Array?</h3>
+        <p>Most Javascript programmers are aware of the inconsistancies in Javascript's native typeof and instanceof operators. For example:</p>
+        <pre>typeof {} 				// object
+typeof [] 				// object, not array ?!?
+typeof null				// object ?!?
+[] instanceof Array 	// true
+[] instanceof Object 	// true ?!?
+{} instanceof Object 	// true again
+[] == []				// false !!
+</pre>
+        <p>Because of this, the typeof operator can be used on most value types, except array. Rather than trying to remember which type comparison should be preformed on each value type, Typecast provides Type.is() as a complete interface for all value types. Type.object.is() works the same way as <a href="http://api.jquery.com/jQuery.isPlainObject" target="_blank">jQuery.isPlainObject()</a> only detecting for objects that are not any of Javascript's 'special' objects like arrays, null, functions, or Infinity.</p>
+        <pre>type.obj({})	// true
+type.obj([])	// false
+type.arr([])	// true
+type.arr({})	// false</pre>
+    </div>
+    <hr class="large">
+    <div class="doc-section row" id="links">
+        <h2 class="lane">Collaborate &amp; Licence</h2>
+        <h3 id="audience">Audience</h3>
+        <p>For novice and intermediate Javascript programmers, this library can prevent hours of troubleshooting bugs that come from Javascript's strange behavior. Advanced programmers may at first feel that they have already learned to side-step many of the these problems, however remembering the correct way to parse an Integer or the slight differences between typeof 'array' and instanceof Array, takes up room in your brain that could be used in accomplishing higher level tasks.</p>
+        <h3>License</h3>
+        <p>Typecast is distributed under the MIT licence. Official distribution on <a href="https://github.com/bishopZ/Typecast.js/">Github</a>.</p>
+        <h3>Collaborators</h3>
+        <ul class="inline">
+            <li><a href="https://github.com/bishopZ">Bishop Zareh, </a></li>
+            <li><a href="https://twitter.com/jwaltonmedia">James Walton, </a></li>
+            <li><a href="https://github.com/velomash">Adam Trimble, </a></li>
+            <li><a href="https://github.com/cgipson">Casey Gipson</a></li>
+        </ul>
+        <p class="floatR pad0"><a href="#top">^ back to top</a></p>
+        <img src="/img/casting-call.png" alt="Collaborate" class="scale hidden"/> </div>
+    <hr class="large">
+</div>
+<script src="oldsrc/page.js" type="text/javascript"></script> 
+<script src="oldsrc/home.js" type="text/javascript"></script>
+<script src="typecast.js" type="text/javascript"></script>
+</body>
