@@ -36,9 +36,9 @@
 	    	type[obj.name].to = obj.to;
 	    	type[obj.name].can = obj.can; 
     	}
-    	if (!type.arr(obj.alias)) {
+    	if (_.isArray(obj.alias)) {
     		_.each(obj.alias, function(alias){
-    			type[alias] = type[type.obj.name];
+    			type[alias] = type[obj.name];
     		});
     	}
     };
