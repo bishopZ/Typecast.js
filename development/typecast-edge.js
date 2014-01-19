@@ -1,6 +1,6 @@
 ;window.type = (function(){
 
-	var _VERSION = '0.3';
+	var _VERSION = '0.4';
 
 	// Let's build a little nest here...
 	var undefined; // for pre-EC5 js

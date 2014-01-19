@@ -11,12 +11,13 @@ Typecast is a replacement to underscore.js. Underscore provides 60 helper functi
 Version History
 -----------
 
-**Beta v0.3** :: currently in development
+**Beta v0.4** :: in development as of Jan 2014
 
 + Removed all the helper functions
 + Removed the types "float" and "unique"
 + Removed method inheritance
 + Added back aliases for type names
++ Removed AMD and CommonJS loaders
 
 **Beta v0.2** :: May 26th, 2013
 
