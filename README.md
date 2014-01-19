@@ -26,4 +26,4 @@ Version History
 + Removed "typed objects" and chaining
 + Made is() the default verb
 + Added some new types and new helpers
-+ Lost the documentation, am rebuilding it.
++ Removed some old documentation
