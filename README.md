@@ -1,6 +1,8 @@
 Typecast.js version 0.2
 ===========
 
+*http://TypecastJS.org*
+
 In a sentence, Typecast solves all the simple problems, so you can focus on the big ones.
 
 Typecast fixes what's wrong with Javascript by creating a complete foundation for variable typing in Javascript. It works both in a browser and on Node.js servers. Typecast pairs well with jQuery and does not modify any native javascript methods. Typecast does not require a custom compiler like CoffeeScript, TypeScript or Clojure. 
@@ -11,7 +13,7 @@ Typecast is a replacement to underscore.js. Underscore provides 60 helper functi
 Version History
 -----------
 
-**Beta v0.4** :: in development as of Jan 2014
+**Edge v0.4** :: in development as of Jan 2014
 
 + Removed all the helper functions
 + Removed the types "float" and "unique"
@@ -19,7 +21,7 @@ Version History
 + Added back aliases for type names
 + Removed AMD and CommonJS loaders
 
-**Beta v0.2** :: May 26th, 2013
+**Current v0.2** :: May 26th, 2013
 
 + Removed "typed objects" and chaining
 + Made is() the default verb
