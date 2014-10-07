@@ -1,0 +1,27 @@
+{
+  "name": "typecast-js",
+  "version": "0.2.1",
+  "description": "Typing for Javascript",
+  "keywords": [
+    "typing",
+    "sanitize",
+    "validate"
+  ],
+  "main": "typecast.raw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bishopZ/Typecast.js.git"
+  },
+  "author": "Bishop Zareh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bishopZ/Typecast.js/issues"
+  },
+  "homepage": "https://github.com/bishopZ/Typecast.js",
+  "dependencies": {
+    "underscore": "^1.7.0"
+  }
+}

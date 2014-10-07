@@ -1,9 +1,21 @@
 // root around for a namespace
-;(function (root, factory) {
-    if (typeof exports === 'object') return module.exports = factory(root); 
-    if (typeof define === 'function' && define.amd) return define(['type'], factory); 
-    root.type = factory(root);
-}(window || this, function (root) {
+;(function(root, factory) {
+  // Set up Backbone appropriately for the environment. Start with AMD.
+  if (typeof define === 'function' && define.amd) {
+    define(['underscore', 'exports'], function(_, exports) {
+      // Export global even in AMD case in case this script is loaded with
+      // others that may still expect a global Anchor.
+      root.type = factory(root, _);
+    });
+  // Next for Node.js or CommonJS. jQuery may not be needed as a module.
+  } else if (typeof exports !== 'undefined') {
+    var _ = require('underscore');
+    module.exports = factory(root, _);
+  // Finally, as a browser global.
+  } else {
+    root.type = factory(root, root._);
+  }
+}(this, function(root, _) {
 
 	// Let's build a little nest here...
 	var undefined; // for pre-EC5 js
@@ -16,18 +28,15 @@
     	return v === t.a() || ( v != t.a() && t.to(v) === t.a() ); }; };
 
 	// type requires underscore.js
-	if (!root._) { log("type requires underscore.js"); return false; };
-	var _ = root._; // local reference
+	if (!_) { log("type requires underscore.js"); return false; };
 
 	// type requires Math
-	if (!root.Math) { log("type requires Math"); return false; };
-	var Math = root.Math; // local reference
-	
+	if (!Math) { log("type requires Math"); return false; };
+
 	// type requires Math
 	// JSON comes with Chrome & Firefox, but not other browsers
 	// hard to justify adding it again here just for IE???
-	if (!root.JSON) { log("type requires JSON"); return false; };
-	var JSON = root.JSON; // local reference
+	if (!JSON) { log("type requires JSON"); return false; };
 
 	// basic interface 
     var type = function(v){
@@ -65,7 +74,7 @@
     // #### the Types ####
 
     // base types
-    type.extend({
+  type.extend({
 		name: "nul",
 		a : null,
 		is: _.isNull,
@@ -707,11 +716,5 @@
 		can: can("que")
 	});
 
-
-
-
-
-
 	return type;
-    
 })); // ...and fade to black
