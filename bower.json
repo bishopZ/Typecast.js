@@ -1,0 +1,28 @@
+{
+  "name": "typecast-js",
+  "version": "0.2.1",
+  "homepage": "https://github.com/bishopZ/Typecast.js",
+  "author": "Bishop Zareh",
+  "description": "Typing for Javascript",
+  "main": "typecast.raw.js",
+  "moduleType": [
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "typing",
+    "sanitize",
+    "validate"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.7.0"
+  }
+}
